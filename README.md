@@ -11,8 +11,11 @@ ejecutar npm run build
 ## Variables de Entorno necesarias:
 
 -VITE_API_TC=https://mindicador.cl/api/uf/
+
 -VITE_API_BTC=https://mindicador.cl/api/bitcoin/
+
 -VITE_API_DOLAR=https://mindicador.cl/api/dolar/
+
 -VITE_API_EURO=https://mindicador.cl/api/euro/
 
 puede ver un ejemplo del despliegue de esta aplicación en el siguiente link:
