@@ -1,6 +1,5 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio creado con fines eductivos, para conectar React (Vite) con API publica https://mindicador.cl/, la cual tiene los principales indicadores económicos de Chile, obtenidos desde el Banco Central de Chile, por simplicidad se consultan los 4 indicadores + populares: Dolar Observado, Euro, UF y Bitcoin
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para el diseño se utiliza componentes de Material UI, tales como Table, TableContainer, Paper, Typography, TextField, Divider, entre otros.
