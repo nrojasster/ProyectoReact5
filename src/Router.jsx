@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import { Layout } from "./Component/Layout.jsx";
 import TablaIe from "./Pages/TablaIe.jsx";
+import ErrorPage from "./Component/ErrorPage.jsx";
+import { ErrorBoundary } from "./Component/ErrorBoundary.jsx";
 
 const props = { titleIe: 'EURO €', dirApi: import.meta.env.VITE_API_EURO };
 const props1 = { titleIe: 'DOLAR $USD', dirApi: import.meta.env.VITE_API_DOLAR };
@@ -11,11 +13,12 @@ const Router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
+        errorElement: <ErrorPage />,
         children: [
-            { path: "/", element: <TablaIe {...props2} /> },
-            { path: "/dolar", element: <TablaIe {...props1} /> },
-            { path: "/euro", element: <TablaIe {...props} /> },
-            { path: "/bitcoin", element: <TablaIe {...props3} /> }
+            { path: "/", element: <ErrorBoundary><TablaIe {...props2} /></ErrorBoundary> },
+            { path: "/dolar", element: <ErrorBoundary><TablaIe {...props1} /></ErrorBoundary> },
+            { path: "/euro", element: <ErrorBoundary><TablaIe {...props} /></ErrorBoundary> },
+            { path: "/bitcoin", element: <ErrorBoundary><TablaIe {...props3} /></ErrorBoundary> }
         ]
     }
 ])

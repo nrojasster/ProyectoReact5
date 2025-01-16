@@ -10,9 +10,9 @@ import TableRow from '@mui/material/TableRow';
 import { DateTime } from 'luxon';
 import numeral from 'numeral';
 import { useState } from 'react';
-import ErrorBoundary from '../Component/ErrorBoundary';
 import useFetch2 from '../hooks/useFetch2';
 import { groupByMonth } from '../utils';
+import { useParams } from 'react-router-dom';
 
 export default function TablaIe(props) {
     const currenYear = new Date().getFullYear()
@@ -28,7 +28,7 @@ export default function TablaIe(props) {
         setUpdate(!update)
     };
 
-    const rutaApi = props.dirApi  
+    const rutaApi = props.dirApi
     const yearB = inputValue
 
     const { data, loading, error } = useFetch2(`${rutaApi}${yearB}`, update)
@@ -43,6 +43,10 @@ export default function TablaIe(props) {
         );
     }
 
+    if (error) {
+        throw new Error('Network response was not ok (1)')
+    }
+
     function NumberFormatter({ number }) {
         return <span>{numeral(number).format('0,0.00')}</span>;
     }
@@ -51,10 +55,10 @@ export default function TablaIe(props) {
         length: currenYear - 1999 + 1
     }, (_, index) => 1999 + index)
 
+    
     const groupedData = groupByMonth(data.serie)
 
     return (
-        <ErrorBoundary error={error}>
             <Paper
                 elevation={24}
                 sx={{
@@ -136,6 +140,5 @@ export default function TablaIe(props) {
                             <CircularProgress size={48} color="success" />
                         </div>)}
             </Paper>
-        </ErrorBoundary>
     );
 }

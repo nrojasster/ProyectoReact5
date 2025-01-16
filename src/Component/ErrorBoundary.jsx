@@ -1,14 +1,33 @@
+import { Component } from "react";
 
-const ErrorBoundary = ({ children, error }) => {    
-    if (error) {
+export class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.log('ErrorBoundary caught an error', error, errorInfo);
+  }
+
+
+  render() {
+    if (this.state.hasError) {
       return (
-        <div>
-          <h1>Oops! Algo salió mal</h1>
-          <p>Por favor, recarga la página o intenta más tarde.</p>
+        <div style={{ textAlign: 'center', padding: '50px' }}>
+          <h1>Oooooooops!</h1>
+          <p>Lo sentimos, ha ocurrido un error inesperado.</p>
+          <p>
+            <i>{this.error || this.errorInfo}</i>
+          </p>
+          <a href="/" style={{ color: '#22C77A', textDecoration: 'none' }}>Volver a la página de inicio</a>
         </div>
       );
     }
-    return <>{children}</>;
-  };
-
-  export default ErrorBoundary;
+    return this.props.children;
+  }
+}
